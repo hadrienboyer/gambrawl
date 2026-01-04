@@ -20,7 +20,7 @@ namespace Gambrawl
             // Set target frame rate for mobile
             Application.targetFrameRate = 60;
             
-            // Ensure the game continues to run when in the background (optional)
+            // Pause the game when app goes to background (standard for mobile games)
             Application.runInBackground = false;
         }
         
