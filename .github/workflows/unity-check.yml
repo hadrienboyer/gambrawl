@@ -1,0 +1,55 @@
+name: Unity Project Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    name: Validate Unity Project
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    
+    - name: Check Unity version
+      run: |
+        echo "Checking Unity version..."
+        cat ProjectSettings/ProjectVersion.txt
+        
+    - name: Verify project structure
+      run: |
+        echo "Verifying project structure..."
+        test -d Assets || exit 1
+        test -d ProjectSettings || exit 1
+        test -d Packages || exit 1
+        test -f Assets/Scenes/SampleScene.unity || exit 1
+        test -f ProjectSettings/ProjectSettings.asset || exit 1
+        echo "✓ Project structure is valid"
+        
+    - name: Check for required packages
+      run: |
+        echo "Checking package manifest..."
+        test -f Packages/manifest.json || exit 1
+        grep -q "com.unity.render-pipelines.universal" Packages/manifest.json || exit 1
+        echo "✓ URP package is configured"
+        
+    - name: Verify mobile settings
+      run: |
+        echo "Checking mobile settings..."
+        grep -q "Android" ProjectSettings/ProjectSettings.asset || exit 1
+        grep -q "iOS" ProjectSettings/ProjectSettings.asset || exit 1
+        echo "✓ Mobile platforms are configured"
+        
+    - name: Summary
+      run: |
+        echo "================================"
+        echo "Project: Gambrawl"
+        echo "Unity Version: $(grep 'm_EditorVersion:' ProjectSettings/ProjectVersion.txt | cut -d' ' -f2)"
+        echo "Status: ✓ All checks passed"
+        echo "================================"

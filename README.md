@@ -1,36 +1,58 @@
-# Gambrawl 2D
-Unity game
+# Gambrawl
 
-- Gambrawl (Prototype v0.1.x)
-- Unity: 6.3 LTS (URP optional) — 2D portrait maze-crawler
+A mobile game built with Unity 6.3 and Universal Render Pipeline (URP).
 
-## What you get
+## Project Details
 
-Zero manual scene setup: on first Editor load, assets + a sandbox scene are auto-generated.
-Press Play: the game spawns itself (camera, UI, maze, player).
-Controls: Swipe (mouse drag / touch) OR keyboard (WASD / arrows).
-3 layouts (hand-made) + 1 slot-roll mod per run.
-Slide-to-wall movement + spikes + bumpers/springs + score + combo + best score.
-Unity Editor Level Editor panel: paint, validate, save/load layouts, quick Play Mode testing.
+- **Engine**: Unity 6.3.0f1
+- **Render Pipeline**: Universal Render Pipeline (URP) 17.0.3
+- **Target Platforms**: Android & iOS
+- **Project Type**: Mobile Game
 
-## Notes
+## Project Structure
 
-Packages: TextMeshPro required. Input System is optional:
-If installed, it is used for keyboard/gamepad + swipe.
-If not installed, keyboard + mouse swipe still work via legacy input.
-All visuals are runtime-generated (primitives + generated sprites/particles). No external art.
+```
+Assets/
+├── Scenes/          # Game scenes
+├── Scripts/         # C# scripts
+├── Materials/       # Materials and shaders
+├── Prefabs/         # Reusable game objects
+├── Sprites/         # 2D sprites and textures
+├── Textures/        # Texture assets
+├── Audio/           # Sound effects and music
+├── Settings/        # URP and project settings
+└── Editor/          # Editor scripts
 
-## Level Editor
+ProjectSettings/     # Unity project configuration
+Packages/            # Package dependencies
+```
 
-Menu: TappyTale/Gambrawl/Level Editor
-Grid paint:
-Left click/drag = paint
-Right click/drag = erase
-Maze view supports vertical + horizontal scrolling (painting remains accurate while scrolled).
-Validation: Start/Exit, border walls, solvability (with/without spikes).
-Save/Load TT_MazeLayout assets + Play Mode tools (Test / Push Live / Pull From Runtime).
-Folders
+## Features
 
-_Assets/TappyTale/Gambrawl/Runtime : gameplay code
-Assets/TappyTale/Gambrawl/Editor : auto-setup + editor tooling
-Assets/TappyTale/Gambrawl/Documentation : extended README + changelog + GDD summary_
+- **Optimized for Mobile**: Configured with mobile-specific rendering settings
+- **URP Pipeline**: Lightweight rendering optimized for performance
+- **Multi-Platform**: Support for both Android (API 24+) and iOS (13.0+)
+- **Quality Presets**: Low, Medium, and High quality settings
+
+## Development Setup
+
+1. Install Unity 6.3.0f1 or later
+2. Clone this repository
+3. Open the project in Unity Hub
+4. The project will automatically download required packages
+
+## Build Settings
+
+### Android
+- Minimum API Level: 24 (Android 7.0)
+- Target API Level: 34 (Android 14)
+- Scripting Backend: IL2CPP
+- Architecture: ARMv7 + ARM64
+
+### iOS
+- Minimum iOS Version: 13.0
+- Target SDK: Latest
+
+## License
+
+See [LICENSE](LICENSE) file for details.
